@@ -1,0 +1,61 @@
+services:
+  cyber-forensic-backend:
+    image: lenyx/cyber-forensic
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: cyber-forensic-backend
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      frontend-net:
+        ipv4_address: 172.19.0.2   # face attaquant
+      backend-net:
+        ipv4_address: 172.20.0.2   # face victime
+    volumes:
+      - ./app/:/app/
+
+  lab-victim-test:
+    image: lenyx/machines-test
+    build:
+      context: ./tests
+      dockerfile: Dockerfile
+    container_name: lab-victim-test
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      backend-net:
+        ipv4_address: 172.20.0.3   # seulement côté backend
+
+  lab-attacker-test:
+    image: lenyx/machines-test
+    build:
+      context: ./tests
+      dockerfile: Dockerfile
+    container_name: lab-attacker-test
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./tests/:/tests/
+    networks:
+      frontend-net:
+        ipv4_address: 172.19.0.4   # seulement côté backend
+
+networks:
+  frontend-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/24
+          gateway: 172.19.0.1
+  backend-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+          gateway: 172.20.0.1
