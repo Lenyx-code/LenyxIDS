@@ -10,12 +10,33 @@ services:
       - NET_RAW
     networks:
       frontend-net:
-        ipv4_address: 172.19.0.2   # face attaquant
+        ipv4_address: 172.19.0.2
       backend-net:
-        ipv4_address: 172.20.0.2   # face victime
+        ipv4_address: 172.20.0.2
     volumes:
       - ./app/:/app/
 
+  database-mongo:
+    image: lenyx/mongodb
+    build:
+      context: ./app/database/mongodb
+      dockerfile: Dockerfile
+    container_name: database-mongo
+    ports: 
+     - "27017:27017"
+  
+  database-mysql:
+    image: lenyx/mysql
+    build:
+      context: ./app/database/mysql
+      dockerfile: Dockerfile
+    container_name: database-mysql
+    ports:
+     - "3307:3307"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=cyber_forensic_db
+  
   lab-victim-test:
     image: lenyx/machines-test
     build:
@@ -25,9 +46,11 @@ services:
     cap_add:
       - NET_ADMIN
       - NET_RAW
+    environment:
+      - ROLE=victim         
     networks:
       backend-net:
-        ipv4_address: 172.20.0.3   # seulement côté backend
+        ipv4_address: 172.20.0.3
 
   lab-attacker-test:
     image: lenyx/machines-test
@@ -38,11 +61,13 @@ services:
     cap_add:
       - NET_ADMIN
       - NET_RAW
+    environment:
+      - ROLE=attacker       
     volumes:
       - ./tests/:/tests/
     networks:
       frontend-net:
-        ipv4_address: 172.19.0.4   # seulement côté backend
+        ipv4_address: 172.19.0.4
 
 networks:
   frontend-net:

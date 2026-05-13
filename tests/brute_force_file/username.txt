@@ -1,0 +1,8 @@
+root
+admin
+user
+ubuntu
+test
+pi
+guest
+EOF

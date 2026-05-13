@@ -1,0 +1,2163 @@
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:02:24
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:5222
+Paquets SYN        : 101 en 2.05s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:21
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.35s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:22
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.19s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:24
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.61s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:25
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.39s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:27
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.30s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:28
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.40s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:30
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.73s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:31
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.15s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:34
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 2.94s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:35
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.13s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:37
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:38
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:40
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.92s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:42
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.78s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:44
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.86s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:45
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.28s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:47
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.66s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:48
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.34s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:50
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 2.02s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:52
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 2.27s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:54
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.29s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:04:56
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.91s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:05:03
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 2.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:05:05
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.36s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:05:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:05:09
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 2.47s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 07:05:10
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:21:42
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:17988
+Paquets SYN        : 101 en 4.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:12
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.63s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:12
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:2122
+Paquets SYN        : 101 en 0.64s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:13
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.59s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:13
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:7486
+Paquets SYN        : 101 en 0.83s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:13
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.80s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:14
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:13401
+Paquets SYN        : 101 en 0.98s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:14
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:14
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:15
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:17825
+Paquets SYN        : 101 en 0.72s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:16
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.13s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:16
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:21339
+Paquets SYN        : 101 en 1.08s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:16
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:16
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:24799
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:17
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:17
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:28521
+Paquets SYN        : 101 en 0.73s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:17
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.80s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:18
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:33247
+Paquets SYN        : 101 en 0.99s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:18
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:19
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:19
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:37587
+Paquets SYN        : 101 en 0.71s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:19
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.50s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:20
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:42010
+Paquets SYN        : 101 en 1.00s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.72s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:20
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:46488
+Paquets SYN        : 101 en 0.82s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:21
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.84s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:22
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:52457
+Paquets SYN        : 101 en 1.22s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:22
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.61s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:22
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:23
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:59188
+Paquets SYN        : 101 en 0.97s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:23
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.79s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:24
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:63884
+Paquets SYN        : 101 en 1.26s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:24
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.03s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:25
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:4874
+Paquets SYN        : 101 en 0.79s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:25
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.65s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:25
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.61s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:25
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:9706
+Paquets SYN        : 101 en 0.77s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:26
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.84s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:27
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:16199
+Paquets SYN        : 101 en 1.08s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:27
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.68s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:28
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:21084
+Paquets SYN        : 101 en 1.06s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:28
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.76s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:28
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.73s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:29
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:26734
+Paquets SYN        : 101 en 1.02s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:29
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.63s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:29
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:31394
+Paquets SYN        : 101 en 0.65s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:30
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:31
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:36618
+Paquets SYN        : 101 en 1.32s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:31
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.05s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:32
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.00s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:32
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:43726
+Paquets SYN        : 101 en 1.68s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:32
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.65s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:33
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.61s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:33
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:49973
+Paquets SYN        : 101 en 0.86s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:34
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:34
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:55369
+Paquets SYN        : 101 en 1.00s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:34
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.78s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:35
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.91s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:36
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:61971
+Paquets SYN        : 101 en 1.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:36
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.85s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:36
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:3055
+Paquets SYN        : 101 en 0.73s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:37
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.91s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:38
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:7649
+Paquets SYN        : 101 en 1.46s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:38
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.24s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:39
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.82s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:39
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:13927
+Paquets SYN        : 101 en 1.21s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:40
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.93s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:40
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:19772
+Paquets SYN        : 101 en 1.11s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:41
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.67s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:41
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:24801
+Paquets SYN        : 101 en 1.16s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:42
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.98s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:43
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:43
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:30782
+Paquets SYN        : 101 en 1.92s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:44
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.15s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:45
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:37761
+Paquets SYN        : 101 en 1.45s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:46
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.64s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:46
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:44118
+Paquets SYN        : 101 en 1.66s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:47
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.76s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:47
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:47
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:51469
+Paquets SYN        : 101 en 0.88s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:49
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:49
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:56563
+Paquets SYN        : 101 en 2.22s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:50
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.12s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:51
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:64821
+Paquets SYN        : 101 en 1.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:51
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.23s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:53
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.43s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:53
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:3124
+Paquets SYN        : 101 en 1.67s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:53
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.73s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:54
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:8763
+Paquets SYN        : 101 en 0.99s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:54
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.79s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:55
+Source suspecte    : 172.20.0.3
+Victime            : 172.19.0.4:14162
+Paquets SYN        : 101 en 1.10s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:22:55
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.80s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:23:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:7625
+Paquets SYN        : 101 en 4.39s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:23:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:22
+Paquets SYN        : 101 en 0.69s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:27:41
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:366
+Paquets SYN        : 101 en 4.85s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:27:42
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:22
+Paquets SYN        : 101 en 0.72s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:28:30
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:2800
+Paquets SYN        : 101 en 4.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:28:31
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:22
+Paquets SYN        : 101 en 0.63s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:05
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:9418
+Paquets SYN        : 101 en 2.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:36
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.64s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:36
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:37
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.42s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:37
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.45s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:38
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:38
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:39
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.45s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:39
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:40
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.59s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:40
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.50s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:41
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:41
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.65s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:42
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.05s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:43
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.59s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:43
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.44s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:44
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:45
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.81s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:46
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.92s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:46
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:47
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.50s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:47
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:48
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.67s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:49
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.46s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:49
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:50
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:50
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:51
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:51
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:52
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.93s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:53
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.87s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:54
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.47s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:54
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:54
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:55
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.66s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:56
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:56
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:57
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:57
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:58
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:58
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.46s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:59
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:33:59
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.44s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:00
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:00
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:01
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.25s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:02
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.94s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:03
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.87s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:04
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:05
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.70s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:05
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.47s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:07
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.64s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:07
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:08
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:08
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:09
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:09
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:10
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:10
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:11
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:11
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:12
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:12
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.61s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:13
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:14
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:14
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:15
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:15
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:16
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.76s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:17
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:17
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:18
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:18
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:19
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:19
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.72s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:21
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:21
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:22
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.91s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:23
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.79s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:24
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.48s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:24
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:25
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:25
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:26
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.43s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:26
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:27
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.50s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:27
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.59s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:28
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.50s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:28
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:29
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:30
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.63s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:30
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:31
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:31
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:32
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.67s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:33
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.66s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:33
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.52s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:34
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:34
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.66s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:35
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:36
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.64s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:36
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.70s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:37
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.43s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:37
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:38
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.65s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:39
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:39
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.59s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:40
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:40
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:41
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:41
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.51s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:42
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.77s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:43
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:43
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:44
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.75s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:45
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:45
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:46
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:46
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:47
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:47
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:48
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:48
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.59s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:49
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:50
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.67s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:50
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.65s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:51
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:52
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.81s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:52
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.74s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:53
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.44s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:54
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.63s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:54
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:55
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:55
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:56
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:56
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:57
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:57
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.57s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:58
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.56s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:59
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:34:59
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:00
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.64s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:01
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.83s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:02
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.83s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:03
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 1.25s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:03
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.66s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:04
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.87s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:05
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.50s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:05
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.46s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.58s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:07
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:07
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:08
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.76s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:09
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.74s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:10
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.60s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:10
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:11
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.53s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:11
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:12
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.67s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:13
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.73s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:13
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.64s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:14
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.55s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:15
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.72s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:15
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.62s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:16
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.59s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:17
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.97s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:18
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.90s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:18
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.38s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:19
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.76s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:19
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.49s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.38s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:20
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.78s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:21
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.38s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:21
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.37s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:22
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.54s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:22
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.81s
+=======================================
+
+========== CAPTURE SYN FLOOD ==========
+Alerte générée à   : 2026-05-08 08:35:23
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:80
+Paquets SYN        : 101 en 0.46s
+=======================================
+

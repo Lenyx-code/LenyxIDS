@@ -1,0 +1,40 @@
+========== CAPTURE OS FINGERPRINTING ==========
+Alerte générée à   : 2026-05-08 04:46:03
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:67
+Paquets suspects   : 3 en 1.00s
+Types détectés     : NULL scan (aucun flag)
+================================================
+
+========== CAPTURE OS FINGERPRINTING ==========
+Alerte générée à   : 2026-05-08 04:46:04
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:67
+Paquets suspects   : 3 en 1.00s
+Types détectés     : NULL scan (aucun flag)
+================================================
+
+========== CAPTURE OS FINGERPRINTING ==========
+Alerte générée à   : 2026-05-08 08:33:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:1
+Paquets suspects   : 3 en 0.04s
+Types détectés     : XMAS scan, NULL scan
+================================================
+
+========== CAPTURE OS FINGERPRINTING ==========
+Alerte générée à   : 2026-05-08 08:33:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:22
+Paquets suspects   : 3 en 0.03s
+Types détectés     : XMAS scan, NULL scan
+================================================
+
+========== CAPTURE OS FINGERPRINTING ==========
+Alerte générée à   : 2026-05-08 08:33:06
+Source suspecte    : 172.19.0.4
+Victime            : 172.20.0.3:22
+Paquets suspects   : 3 en 0.16s
+Types détectés     : NULL scan
+================================================
+

