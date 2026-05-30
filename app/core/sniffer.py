@@ -1,19 +1,28 @@
+import time
+
 from scapy.all import sniff, conf, IFACES, wrpcap
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 from scapy.layers.l2 import ARP
 from scapy.layers.inet6 import IPv6
 from scapy.layers.http import HTTP
 from core.analyser import Analyser as an
+from core.forencic import Forensic as fo
 from utils.datetime_utils import DatetimeUtils as dt
 import os
+import threading
 
 
 class Sniffer:
     def __init__(self, analyser_instance):
         self.analyser = analyser_instance
+        self.current_iface = None
     
     def process_packet(self, packet):
         now = dt.get_format_now()
+        iface = getattr(packet, "sniffed_on", None)
+        if not iface:
+            iface = self.current_iface[0] if isinstance(self.current_iface, list) else self.current_iface
+        iface = str(iface)
         if packet.haslayer(IP):
             ip_src = packet[IP].src
             ip_dst = packet[IP].dst
@@ -25,21 +34,24 @@ class Sniffer:
                 port_dst = packet[TCP].dport 
                 tcp_flags = packet[TCP].flags
                 print(f'[+]{now} TCP | {ip_src} -> {ip_dst}:{port_dst} [{tcp_flags}]')
+                fo.save_captured_packet(packet=packet, iface_name=iface, protocol_name="TCP")
                 
-                self.analyser.detect_port_scan(ip_src, port_dst, ip_dst, tcp_flags)
+                self.analyser.detect_port_scan(ip_src, port_dst, ip_dst, tcp_flags, iface)
                 self.analyser.detect_brute_force(ip_src, port_dst, ip_dst, tcp_flags)
                 self.analyser.detect_syn_flood(ip_src, port_dst, ip_dst, tcp_flags)
                 self.analyser.detect_os_fingerprinting(ip_src, port_dst, ip_dst, tcp_flags)
                 
             elif packet.haslayer(UDP):
                 port_dst = packet[UDP].dport
-                print(f'[+]{now} UDP | {ip_src} -> {ip_dst}:{port_dst}')
-
-            elif packet.haslayer(UDP) and packet[UDP].dport == 1900:
-                print(f"[*]{now} Discovery | Appareil mobile détecté (SSDP) : {ip_src}")
+                fo.save_captured_packet(packet=packet, iface_name=iface, protocol_name="UDP")
+                if packet[UDP].dport == 1900:
+                    print(f"[*]{now} Discovery | Appareil mobile détecté (SSDP) : {ip_src}")
+                else:
+                    print(f'[+]{now} UDP | {ip_src} -> {ip_dst}:{port_dst}')
             
             elif packet.haslayer(ICMP):
                 code = packet[ICMP].code
+                fo.save_captured_packet(packet=packet, iface_name=iface, protocol_name="ICMP")
                 print(f'[+]{now} IPv4 (ICMP) | {ip_src} -> {ip_dst}/{code} | Ping/Echo')
 
             
@@ -49,6 +61,7 @@ class Sniffer:
             ip_src  = arp.psrc
             mac_src = arp.hwsrc
             ip_dst  = arp.pdst 
+            fo.save_captured_packet(packet=packet, iface_name=iface, protocol_name="ARP")
             print(f'[+]{now} ARP | {ip_src} ({mac_src}) -> {ip_dst}')
             if arp.op == 2:
                 self.analyser.detect_arp_spoofing(ip_src, ip_dst, mac_src)
@@ -96,7 +109,6 @@ class Sniffer:
 
     def start_sniffing(self):
         if os.path.exists('/.dockerenv'):
-            # Détecter toutes les interfaces actives sauf loopback
             import subprocess
             result = subprocess.run(
                 ["ip", "-o", "link", "show", "up"],
@@ -112,17 +124,21 @@ class Sniffer:
                 interfaces = ["eth0"]
 
             print(f"[*] Environnement Docker détecté. Interfaces : {interfaces}")
-            interface_to_use = interfaces
+            self.current_iface = interfaces
         else:
-            interface_to_use = self.get_active_interface()
-            print(f"[*] Surveillance sur : {interface_to_use}")
-
-        print(f'[*] Démarrage surveillance sur {interface_to_use}...')
-
-        sniff(
-            iface=interface_to_use,
-            filter="ip or arp",
-            prn=self.process_packet,
-            store=False,
-            promisc=True
-        )
+            self.current_iface = self.get_active_interface()
+            print(f"[*] Surveillance sur l'hôte : {self.current_iface}")
+        while True: 
+            try:
+                print(f'[*] Démarrage surveillance sur {self.current_iface}...')
+                sniff(
+                    iface=self.current_iface,
+                    filter="(ip or arp) and not port 27017 and not port 3306 and not port 3307",
+                    prn=self.process_packet,
+                    store=False,
+                    promisc=True
+                )
+            except Exception as e:
+                print(f"[!] Sniffer crash : {e} — redémarrage dans 2s")
+                time.sleep(2)
+       
