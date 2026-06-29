@@ -1,25 +1,29 @@
-from motor.motor_asyncio import AsyncIOMotorClient
-from bson import json_util
+# api/utils/database.py
 from fastapi import Request
+from api.utils.subscribers import _subscribers 
+import asyncio
+import json
 
-# Centralisation de la connexion Mongo
-client = AsyncIOMotorClient("mongodb://database-mongo:27017/")
-db = client.cyber_forensic_db
+async def event_generator(request: Request, channel: str):
+    """Générateur SSE — écoute uniquement les NOUVEAUX événements"""
+    queue = asyncio.Queue(maxsize=50)
 
-async def event_generator(request: Request, collection_name: str):
-    collection = db[collection_name]
+    if channel not in _subscribers:
+        _subscribers[channel] = []
+    _subscribers[channel].append(queue)
 
-    cursor = collection.find().sort("_id", -1).limit(100)
-    async for doc in cursor:
-        doc["_id"] = str(doc["_id"])
-        yield f"data: {json_util.dumps(doc)}\n\n"
-        
-    async with collection.watch() as stream:
-        async for change in stream:
+    try:
+        yield "data: {\"connected\": true}\n\n"
+
+        while True:
             if await request.is_disconnected():
                 break
-            
-            if change["operationType"] == "insert":
-                doc = change["fullDocument"]
-                doc["_id"] = str(doc["_id"])
-                yield f"data: {json_util.dumps(doc)}\n\n"
+            try:
+                event = await asyncio.wait_for(queue.get(), timeout=30.0)
+                yield f"data: {json.dumps(event, default=str)}\n\n"
+            except asyncio.TimeoutError:
+                yield ": ping\n\n"
+
+    finally:
+        if queue in _subscribers.get(channel, []):
+            _subscribers[channel].remove(queue)

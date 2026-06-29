@@ -39,6 +39,7 @@ class Repository:
         return data
 
 
+
     @staticmethod
     def save_packets_batch(packets: list[dict]):
         if not packets:
@@ -65,6 +66,13 @@ class Repository:
         """Méthode générique — évite la duplication de code"""
         con    = c.get_mongodb_connection("alerts")
         data   = Repository._prepare_alert(alert_model)
+        result = con.insert_one(data)
+        return str(result.inserted_id)
+    
+    @staticmethod
+    def _save_monitor_alert(alert_monitor) -> str:
+        con = c.get_mongodb_connection('monitor_alerts')
+        data = Repository._prepare_alert(alert_monitor)
         result = con.insert_one(data)
         return str(result.inserted_id)
 
@@ -96,6 +104,23 @@ class Repository:
     def save_arp_spoofing_alert(alert: AlertArpSpoofing) -> str:
         inserted_id = Repository._save_alert(alert)
         print(f"MONGODB: save_arp_spoofing_alert > {inserted_id}")
+        return inserted_id
+    @staticmethod
+    def save_ping_flood_alert(alert: AlertPingFlood) -> str:
+        inserted_id = Repository._save_alert(alert)
+        print(f"MONGODB: save_ping_flood_alert > {inserted_id}")
+        return inserted_id
+
+    @staticmethod
+    def save_http_flood_alert(alert: AlertHttpFlood) -> str:
+        inserted_id = Repository._save_alert(alert)
+        print(f"MONGODB: save_http_flood_alert > {inserted_id}")
+        return inserted_id
+    
+    @staticmethod
+    def save_web_attack_alert(alert: AlertWebAttack) -> str:
+        inserted_id = Repository._save_alert(alert)
+        print(f"MONGODB: save_web_attack_alert > {inserted_id}")
         return inserted_id
 
     @staticmethod

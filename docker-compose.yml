@@ -26,6 +26,8 @@ services:
     networks:
       backend-net:
         ipv4_address: 172.20.0.6
+    volumes:
+      - mongo_data:/data/db 
   
   database-mysql:
     image: lenyx/mysql
@@ -46,7 +48,9 @@ services:
       - NET_ADMIN
       - NET_RAW
     environment:
-      - ROLE=victim         
+      - ROLE=victim  
+    volumes:
+      - ./tests/:/tests/       
     networks:
       backend-net:
         ipv4_address: 172.20.0.3
@@ -83,6 +87,8 @@ services:
       - frontend-net
     depends_on:
       - cyber-forensic-backend
+volumes:
+  mongo_data:
 
 networks:
   frontend-net:

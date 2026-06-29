@@ -58,3 +58,26 @@ class AlertArpSpoofing(Alert):
     mac_legitimate: str
     mac_fraudulent: str
     target_ip: str
+
+
+class AlertPingFlood(Alert):
+    attack_type: str = "PING_FLOOD"        # underscore — cohérent avec les autres
+    severity: str    = "CRITICAL"
+    icmp_packets: int                       # nb de paquets ICMP echo-request
+    duration: float
+
+
+class AlertHttpFlood(Alert):
+    attack_type: str = "HTTP_FLOOD"
+    severity: str    = "CRITICAL"
+    port_dst: int
+    http_requests: int                      # nb de requêtes HTTP en rafale
+    duration: float
+    target_path: Optional[str] = None       # ex: "/" ou "/login" si identifiable
+
+class AlertWebAttack(Alert):
+    attack_type: str = "WEB_ATTACK"
+    severity: str    = "CRITICAL"
+    port_dst: int
+    web_attack_type: str   
+    payload: str            
