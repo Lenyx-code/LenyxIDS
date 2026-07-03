@@ -12,8 +12,8 @@ class AlertMonitor(BaseModel):
     process_name: Optional[str]
     integrity_hash : str
 
-    class Config:
-        populate_by_name = True
+    from pydantic import ConfigDict
+    model_config = ConfigDict(populate_by_name=True)
 
 class AlertFileChange(AlertMonitor):
     attack_type: str = "FILE_INTEGRITY"

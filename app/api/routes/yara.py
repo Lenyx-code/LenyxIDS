@@ -12,7 +12,7 @@ from database.mongodb.connection import Connection as c
 from bson import ObjectId
 from datetime import datetime
 import math
-from core.yara_engine import analyze_file, update_rules
+from core.yara_engine import analyze_file, update_rules,get_engine_status, BUILTIN_DIR, BUILTIN_RULES
 
 
 router = APIRouter()
@@ -61,9 +61,9 @@ async def scan_file(file: UploadFile = File(...)):
             os.remove(tmp_path)
 
 
-# ------------------------------------------------------------------
+ 
 # Historique des scans
-# ------------------------------------------------------------------
+ 
 
 @router.get("/yara/history")
 async def get_scan_history(
@@ -95,9 +95,9 @@ async def get_scan_history(
     }
 
 
-# ------------------------------------------------------------------
+ 
 # Détail d'un scan
-# ------------------------------------------------------------------
+ 
 
 @router.get("/yara/history/{scan_id}")
 async def get_scan_detail(scan_id: str):
@@ -111,9 +111,9 @@ async def get_scan_detail(scan_id: str):
         raise HTTPException(status_code=400, detail="ID invalide")
 
 
-# ------------------------------------------------------------------
+ 
 # Statistiques
-# ------------------------------------------------------------------
+ 
 
 @router.get("/yara/stats")
 async def get_yara_stats():
@@ -151,39 +151,27 @@ async def get_yara_stats():
     }
 
 
-# ------------------------------------------------------------------
+ 
 # Mise à jour manuelle des règles
-# ------------------------------------------------------------------
-
-@router.post("/yara/rules/update")
-async def trigger_rules_update():
-    """Force le téléchargement et la recompilation des règles YARA."""
-    try:
-        success = update_rules(force=True)
-        return {
-            "success": success,
-            "message": "Règles mises à jour" if success else "Échec de la mise à jour"
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-# ------------------------------------------------------------------
-# Infos sur les règles chargées
-# ------------------------------------------------------------------
+ 
 
 @router.get("/yara/rules/info")
 async def get_rules_info():
-    import os
+    from core.yara_engine import get_engine_status, BUILTIN_DIR, BUILTIN_RULES
     compiled_path = "storage/yara/compiled.yarc"
     rules_extract = "storage/yara/raw"
+    builtin_dir   = BUILTIN_DIR   # "storage/yara/builtin"
+
+    status = get_engine_status()
 
     info = {
-        "compiled_exists": os.path.exists(compiled_path),
-        "compiled_size_kb": 0,
-        "last_updated": None,
-        "categories": [],
-        "rule_files_count": 0,
+        "compiled_exists":   os.path.exists(compiled_path),
+        "compiled_size_kb":  0,
+        "last_updated":      None,
+        "categories":        [],
+        "rule_files_count":  0,
+        "rules_source":      status["rules_source"],   # ← "builtin" | "community" | "none"
+        "engine_ready":      status["ready"],
     }
 
     if os.path.exists(compiled_path):
@@ -191,25 +179,42 @@ async def get_rules_info():
         info["compiled_size_kb"] = round(stat.st_size / 1024, 1)
         info["last_updated"]     = datetime.fromtimestamp(stat.st_mtime).isoformat()
 
+    # ─── Compter les règles builtin (toujours présentes) ──────────
+    builtin_count = 0
+    if os.path.exists(builtin_dir):
+        builtin_files = [f for f in os.listdir(builtin_dir)
+                         if f.endswith((".yar", ".yara"))]
+        builtin_count = len(builtin_files)
+        info["categories"].append({
+            "name":       "builtin",
+            "rule_count": builtin_count,
+        })
+    else:
+        # builtin_dir pas encore créé → compter depuis BUILTIN_RULES en mémoire
+        builtin_count = len(BUILTIN_RULES)
+        info["categories"].append({
+            "name":       "builtin",
+            "rule_count": builtin_count,
+        })
+
+    info["rule_files_count"] += builtin_count
+
+    #Compter les règles communautaires (si téléchargées)
     if os.path.exists(rules_extract):
-        categories = []
-        count      = 0
         for cat in os.listdir(rules_extract):
             cat_path = os.path.join(rules_extract, cat)
             if os.path.isdir(cat_path):
                 n = len([f for f in os.listdir(cat_path)
                          if f.endswith((".yar", ".yara"))])
-                categories.append({"name": cat, "rule_count": n})
-                count += n
-        info["categories"]       = categories
-        info["rule_files_count"] = count
+                if n > 0:
+                    info["categories"].append({"name": cat, "rule_count": n})
+                    info["rule_files_count"] += n
 
     return info
 
-
-# ------------------------------------------------------------------
+ 
 # Helpers
-# ------------------------------------------------------------------
+ 
 
 def _save_scan_result(result: dict, filename: str, size_mb: float) -> str:
     try:

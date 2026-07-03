@@ -80,6 +80,9 @@ export const API = {
 
   pushMetrics: (metrics) =>
     api.post("/api/monitoring/push", metrics),
+  // Monitoring fichiers
+getFileChanges: (hostname, params = {}) =>
+  api.get(`/api/monitoring/hosts/${encodeURIComponent(hostname)}/file-changes`, { params }),
 }
 
 export const SSE_URLS = {

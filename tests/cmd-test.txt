@@ -24,3 +24,19 @@ siege -c 50 -t 10s http://172.20.0.3/
 sqlmap -u "http://172.20.0.3/api/search.php?q=test" --batch --banner
 # Détecter si les scripts injectés passent
 wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/XSS.txt http://172.20.0.3/api/search.php?q=FUZZ
+
+
+# test monitor alerte 
+ curl -X POST http://localhost:8000/api/monitoring/broadcast-alert \
+  -H "Authorization: Bearer ids-agent-secret-token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "anomaly_type": "PROCESS_OVERLOAD",
+    "severity": "medium",
+    "agent_hostname": "test-host",
+    "detection_time": "2026-07-01T12:00:00Z",
+    "process_name": "test-proc",
+    "process_pid": 1234,
+    "process_cpu": 95.5
+  }'
+{"ok":true}

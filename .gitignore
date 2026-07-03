@@ -1,4 +1,75 @@
+# Environnements virtuels
+
 .venv/
-.git/
-__pychache__/
+venv/
+env/
+
+# Python
+
+**pycache**/
+**/**pycache**/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+
+# Fichiers de logs et temporaires
+
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Couverture de tests et caches
+
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE et éditeurs
+
+.vscode/
+.idea/
+*.code-workspace
+
+# Variables d'environnement
+
+.env
+.env.*
+!.env.example
+
+# Fichiers de captures réseau
+
 *.pcap
+
+# Build Python
+
+build/
+dist/
+
+# Node.js / React
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build frontend
+
+web/dist/
+dist/
+
+# Système
+
+.DS_Store
+Thumbs.db
+
+# Docker (optionnel)
+
+*.pid
+docker-compose.override.yml

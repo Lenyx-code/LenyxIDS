@@ -353,10 +353,14 @@ class LocalAnalyser:
             key = f"FILE_CHANGE_{change['path']}"
             if self._can_alert(key, COOLDOWN["FILE_CHANGE"]):
                 alerts.append(self._build(hostname, "FILE_CHANGE", "critical",
-                    f"Fichier {change['change_type']} : {change['path']} ({change.get('old_size',0)} → {change.get('new_size',0)} bytes)",
-                    extra={"file_path": change["path"], "change_type": change["change_type"],
-                           "old_size": change.get("old_size"), "new_size": change.get("new_size")}))
-                print(f"[!!!] FILE {change['change_type']} : {change['path']}")
+                    f"Fichier {change['change_type']} : {change['path']} ...",
+                    extra={
+                        "file_path":   change["path"],
+                        "change_type": change["change_type"],
+                        "old_size":    change.get("old_size"),
+                        "new_size":    change.get("new_size"),
+                    }
+                ))
 
         for conn in metrics.get("connections", []):
             raddr = conn.get("raddr", "")
@@ -402,7 +406,7 @@ class LocalAnalyser:
             "status":         "open",
             "detail":         detail,
             "agent_hostname": hostname,
-            **(extra or {}),
+            **(extra or {}), 
         }
         doc["integrity_hash"] = self._hash(doc)
         return doc
@@ -417,7 +421,8 @@ class MongoBackend:
     """
 
     def __init__(self, uri: str, db_name: str = DEFAULT_DB,
-                 api_url: str = DEFAULT_API_URL, token: str = DEFAULT_TOKEN):
+                 api_url: str = DEFAULT_API_URL, token: str = DEFAULT_TOKEN,
+                 verbose: bool = False):
         if not MONGO_OK:
             print("[!] pymongo manquant — pip install pymongo")
             sys.exit(1)
@@ -426,6 +431,7 @@ class MongoBackend:
         self._db = client[db_name]
 
         self._api_base = api_url.rstrip("/")
+        self._token    = token
         self._headers  = {
             "Authorization": f"Bearer {token}",
             "Content-Type":  "application/json",
@@ -433,95 +439,81 @@ class MongoBackend:
         self._session = requests.Session() if REQUESTS_OK else None
         if self._session:
             self._session.headers.update(self._headers)
+        self._verbose = verbose
 
         print(f"[+] MongoDB connecté : {uri} → {db_name}")
         print(f"[+] Backend SSE      : {self._api_base}")
 
-    # agent.py (Extrait de la classe MongoBackend ou de la routine d'alerte)
+    # ── métriques ──────────────────────────────────────────────────
 
-    def _broadcast(self, alert_dict: dict):
-        """
-        Envoie l'alerte fraîchement créée au backend central pour déclencher le SSE instantané.
-        """
-        if not REQUESTS_OK:
-            return
+    def save_metrics(self, metrics: dict):
+        self._db["monitoring_metrics"].insert_one({
+            **metrics,
+            "received_at": datetime.now(timezone.utc),
+        })
+        self._post("/api/monitoring/broadcast-metrics", self._lite(metrics))
 
+    # ── alertes ────────────────────────────────────────────────────
+
+    def save_alerts(self, alerts: list[dict]):
+        """
+        Point d'entrée appelé par Agent._tick(). Les dicts sont déjà
+        entièrement construits par LocalAnalyser._build() (CPU_SPIKE,
+        RAM_EXHAUSTION, DISK_FULL, SUSPICIOUS_COMMAND, UNEXPECTED_ROOT_PROC,
+        PROCESS_OVERLOAD, FILE_CHANGE, SUSPICIOUS_CONNECTION) — on les
+        sauvegarde tels quels puis on broadcast chacune.
+        """
+        for alert_doc in alerts:
+            self._save_alert(alert_doc)
+
+    # agent.py — dans MongoBackend._save_alert(), ajouter après insert
+    def _save_alert(self, alert_doc: dict):
+        print(f"[DEBUG] _save_alert appelé avec anomaly_type={alert_doc.get('anomaly_type')}")
         try:
-            # Sécurité de copie pour éviter de corrompre l'objet d'origine
+            col = self._db["monitor_alerts"]
+            doc = dict(alert_doc)
+            res = col.insert_one(doc)
+            doc["_id"] = res.inserted_id
+            print(f"[DEBUG] Inséré en DB avec _id={doc['_id']}")
+
+            if doc.get("anomaly_type") == "FILE_CHANGE":
+                self._db["file_changes"].insert_one({...})
+
+            self._broadcast(doc)
+            print(f"[DEBUG] _broadcast() terminé sans exception")
+        except Exception as e:
+            print(f"[!] Erreur lors de la sauvegarde de l'alerte : {e}")
+
+    
+    def _broadcast(self, alert_dict: dict):
+        """Notifie le backend central pour déclencher le SSE instantané."""
+        if not self._session:
+            return
+        try:
             data = dict(alert_dict)
-            
-            # Conversion de l'ObjectId de MongoDB en chaîne exploitable
             if "_id" in data:
                 data["_id"] = str(data["_id"])
-                
-            # On s'assure que le champ 'id' existe pour l'unification Frontend
             data["id"] = data.get("id") or data.get("_id")
-            
-            # Conversion propre des formats temporels si nécessaire
+
             if isinstance(data.get("detection_time"), datetime):
                 data["detection_time"] = data["detection_time"].isoformat()
             else:
                 data["detection_time"] = str(data.get("detection_time", ""))
 
-            # Requête vers l'endpoint ajusté ci-dessus
-            url = f"{self.api_url}/api/monitoring/broadcast-alert"
-            headers = {"Authorization": f"Bearer {self.token}"}
-            
-            res = requests.post(url, json=data, headers=headers, timeout=3)
+            res = self._session.post(
+                f"{self._api_base}/api/monitoring/broadcast-alert",
+                json=data, timeout=3,
+            )
             if res.status_code != 200:
-                print(f"[!] Échec de notification broadcast au backend ({res.status_code})")
-                
+                print(
+                "Broadcast:",
+                res.status_code,
+                res.text)
         except Exception as e:
             print(f"[!] Erreur de transmission de l'alerte à l'API : {e}")
+            return {"ok": False, "error": str(e)}
 
-    #métriques
-
-    def save_metrics(self, metrics: dict):
-        # 1. Persistance MongoDB
-        self._db["monitoring_metrics"].insert_one({
-            **metrics,
-            "received_at": datetime.now(timezone.utc),
-        })
-        # 2. Broadcast SSE métriques (version allégée)
-        self._post("/api/monitoring/broadcast-metrics", self._lite(metrics))
-
-    # alertes
-
-    def _save_alert(self, anomaly_type: str, detail: str, severity: str, **kwargs):
-        """
-        Enregistre l'alerte localement/directement dans MongoDB (Mode Mongo)
-        et déclenche la notification temps réel vers l'API.
-        """
-        if not MONGO_OK or not self.db:
-            return
-
-        try:
-            col = self.db["monitor_alerts"]
-            alert_doc = {
-                "anomaly_type": anomaly_type,
-                "detail": detail,
-                "severity": severity,
-                "agent_hostname": self.hostname,
-                "detection_time": datetime.utcnow(), # Objet datetime local
-                **kwargs
-            }
-            
-            # Sauvegarde dans MongoDB
-            res = col.insert_one(alert_doc)
-            
-            # Injecter l'ID généré par Mongo dans le dictionnaire pour le broadcast
-            alert_doc["_id"] = res.inserted_id
-            
-            if self.verbose:
-                print(f"[+] Alerte enregistrée en DB : {anomaly_type}")
-
-            # POSITIONNEMENT DU BROADCAST : Juste ici !
-            self._broadcast(alert_doc)
-
-        except Exception as e:
-            print(f"[!] Erreur lors de la sauvegarde de l'alerte : {e}")
-
-    #  helpers
+    # ── helpers ────────────────────────────────────────────────────
 
     def _lite(self, metrics: dict) -> dict:
         """Version allégée des métriques pour le broadcast SSE."""
@@ -537,11 +529,7 @@ class MongoBackend:
         if not self._session:
             return
         try:
-            self._session.post(
-                f"{self._api_base}{path}",
-                json=payload,
-                timeout=3,
-            )
+            self._session.post(f"{self._api_base}{path}", json=payload, timeout=3)
         except Exception:
             pass
 
@@ -674,6 +662,7 @@ if __name__ == "__main__":
             db_name = args.db,
             api_url = args.api,
             token   = args.token,
+            verbose = args.verbose,
         )
     else:
         backend = ApiBackend(api_url=args.api, token=args.token)

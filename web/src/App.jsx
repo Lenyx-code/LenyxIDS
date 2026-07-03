@@ -6,11 +6,9 @@ import { Reports } from "./views/Reports"
 import { Monitoring } from "./views/Monitoring"
 import { Analyse } from "./views/Analyse"
 import { Paramètres } from "./views/Settings"
-import { SSEProvider } from "./store/sseStore"
 
 export default function App() {
   return (
-    <SSEProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
@@ -23,6 +21,5 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </SSEProvider>
   )
 }
