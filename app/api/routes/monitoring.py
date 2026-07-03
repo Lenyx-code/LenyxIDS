@@ -6,12 +6,15 @@ Le préfixe /api est ajouté dans main.py → routes finales : /api/monitoring/*
 import os
 import math
 from datetime import datetime
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Request, HTTPException, Query
 from fastapi.responses import StreamingResponse
 from database.mongodb.connection import Connection as c
 from bson import ObjectId
 from api.utils.database import event_generator
 from api.utils.broadcast import broadcast
+import socket
+import threading
+from pathlib import Path
 
 router = APIRouter()
 
@@ -125,17 +128,24 @@ async def broadcast_metrics(request: Request, body: dict):
 
 @router.post("/monitoring/broadcast-alert")
 async def broadcast_alert(request: Request, body: dict):
-    """Reçoit une alerte de l'agent et la broadcast sur le canal SSE monitor_alerts."""
     auth = request.headers.get("Authorization", "")
     if AGENT_TOKEN and auth != f"Bearer {AGENT_TOKEN}":
         raise HTTPException(status_code=401, detail="Token invalide")
+
     try:
-        from api.utils.broadcast import broadcast
-        if "_id" in body and not isinstance(body["_id"], str):
+        if "_id" in body:
             body["_id"] = str(body["_id"])
+
+        if "id" not in body:
+            body["id"] = body.get("_id") or str(ObjectId())
+
+        print("Broadcast alert:", body)
+
         broadcast("monitor_alerts", body)
+
         return {"ok": True}
     except Exception as e:
+        print("Broadcast error:", e)
         return {"ok": False, "error": str(e)}
 
 
@@ -281,27 +291,6 @@ async def baseline_diff():
         return {"changes": [], "error": str(e)}
 
 
-@router.post("/monitoring/broadcast-alert")
-async def broadcast_alert(request: Request, body: dict):
-    """
-    Endpoint appelé par l'agent (en mode mongo) pour relayer une alerte en temps réel au Frontend
-    """
-    # Pas de token obligatoire ici si c'est de l'interne, ou ajoutez votre vérification habituelle
-    try:
-        # Sécurité de conversion de l'ID MongoDB en chaîne
-        if "_id" in body and not isinstance(body["_id"], str):
-            body["_id"] = str(body["_id"])
-        
-        # Injection du champ 'id' pour le hook React / Toasts
-        body["id"] = body.get("id") or body.get("_id") or f"monitor_{int(datetime.utcnow().timestamp())}"
-
-        # UTILISATION DU BROADCAST GLOBAL (Temps Réel)
-        broadcast("monitor_alerts", body)
-        return {"status": "ok", "message": "Alert broadcasted via global utils"}
-    except Exception as e:
-        print(f"[!] Erreur endpoint broadcast-alert: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
 
 def _save_monitor_alert(anomaly_type: str, detail: str, severity: str, hostname: str, **kwargs):
     """
@@ -396,7 +385,57 @@ def _analyse_push(data: dict):
                 process_mem=proc.get("mem_pct"),
                 overload_cycles=proc.get("overload_cycles", 1),
             )
+# Ajouter dans monitoring.py
 
+@router.post("/monitoring/file-changes")
+async def push_file_change(body: dict):
+    """Reçoit et stocke un changement fichier détecté par Watchdog."""
+    if not body.get("hostname") or not body.get("file_path"):
+        raise HTTPException(status_code=422, detail="hostname et file_path requis")
+
+    con = c.get_mongodb_connection("file_changes")
+    doc = {**body, "received_at": datetime.utcnow()}
+    if isinstance(doc.get("timestamp"), str):
+        try:
+            doc["timestamp"] = datetime.fromisoformat(doc["timestamp"])
+        except Exception:
+            doc["timestamp"] = datetime.utcnow()
+
+    result = con.insert_one(doc)
+    doc["_id"] = str(result.inserted_id)
+
+    # Broadcaster pour que la vue Monitoring se mette à jour en temps réel
+    broadcast("monitoring", {"file_change": doc})
+
+    return {"ok": True, "id": str(result.inserted_id)}
+
+
+@router.get("/monitoring/hosts/{hostname}/file-changes")
+async def get_file_changes(
+    hostname: str,
+    page:        int = Query(default=1, ge=1),
+    limit:       int = Query(default=50, ge=1, le=200),
+    change_type: str = Query(default=None),   # "created"|"modified"|"deleted"
+):
+    con   = c.get_mongodb_connection("file_changes")
+    query = {"hostname": hostname}
+    if change_type:
+        query["change_type"] = change_type
+
+    total   = con.count_documents(query)
+    changes = list(
+        con.find(query)
+           .sort("received_at", -1)
+           .skip((page - 1) * limit)
+           .limit(limit)
+    )
+    return {
+        "data":        _serialize(changes),
+        "total":       total,
+        "page":        page,
+        "limit":       limit,
+        "total_pages": math.ceil(total / limit) if total > 0 else 1,
+    }   
 
 # ── Sérialisation ─────────────────────────────────────────────────
 

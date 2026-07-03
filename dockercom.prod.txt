@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  cyber-forensic-backend:
+    image: lenyx/cyber-forensic
+    container_name: cyber-forensic-backend
+    network_mode: host
+    # Les 'ports' ne sont plus nécessaires car le conteneur écoute directement sur le port 8000 de l'hôte
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./app/:/app/
+    restart: always
+
+  database-mongo:
+    image: lenyx/mongodb
+    container_name: database-mongo
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    network_mode: host
+    # Écoute directement sur le port 27017 de l'hôte
+    volumes:
+      - mongo_data:/data/db 
+    restart: always
+  
+  database-mysql:
+    image: lenyx/mysql
+    container_name: database-mysql
+    network_mode: host
+    # Écoute directement sur le port 3306 de l'hôte (Attention au conflit si un MySQL tourne déjà sur la machine)
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin # À changer impérativement en prod !
+      - MYSQL_DATABASE=cyber_forensic_db
+    restart: always
+  
+  lab-victim-test:
+    image: lenyx/machines-test
+    container_name: lab-victim-test
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - ROLE=victim  
+    volumes:
+      - ./tests/:/tests/       
+    restart: always
+
+  lab-attacker-test:
+    image: lenyx/machines-test
+    container_name: lab-attacker-test
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    sysctls:
+      - net.ipv4.ip_forward=1 
+    environment:
+      - ROLE=attacker       
+    volumes:
+      - ./tests/:/tests/   
+    restart: always
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: cyber-forensic-web
+    network_mode: host
+    # Écoute directement sur le port 5173 de l'hôte
+    # Suppression du volume node_modules de dev si c'est un build de prod (ex: Nginx servant du static)
+    volumes:
+      - ./web:/web
+    depends_on:
+      - cyber-forensic-backend
+    restart: always
+
+volumes:
+  mongo_data:

@@ -172,3 +172,52 @@
 ```bash
    docker network rm <nom du réseau> <nom du réseau> ...
 ```
+
+const MonitorAlertContext = createContext(null)  
+
+  const [monitorAlerts,    setMonitorAlerts]    = useState([])
+  const [monitorAlertConn, setMonitorAlertConn] = useState(false)
+
+   useEffect(() => {
+    let retry = null
+    const connect = () => {
+      const es = new EventSource(SSE_URLS.monitorAlerts)
+      es.onopen    = () => setMonitorAlertConn(true)
+      es.onmessage = (e) => {
+        try {
+          const d = JSON.parse(e.data)
+          if (d?.connected) return
+          setMonitorAlerts(prev => {
+            // Dédoublonnage par _id
+            if (d._id && prev.some(t => t._id === d._id)) return prev
+            return [...prev.slice(-3), { ...d, id: createToastId() }]
+          })
+        } catch {}
+      }
+      es.onerror = () => {
+        setMonitorAlertConn(false)
+        es.close()
+        retry = setTimeout(connect, 3000)
+      }
+    }
+    connect()
+    return () => clearTimeout(retry)
+  }, [])
+
+  const closeMonitorAlertToast = useCallback(
+    (id) => setMonitorAlerts(p => p.filter(t => t.id !== id)), []
+  )
+
+const monitorAlertValue = useMemo(() => ({
+    monitorAlerts, monitorAlertConn, closeMonitorAlertToast
+  }), [monitorAlerts, monitorAlertConn, closeMonitorAlertToast])
+
+  return (
+    <AlertContext.Provider value={alertValue}>
+      <PacketContext.Provider value={packetValue}>
+        <MonitorAlertContext.Provider value={monitorAlertValue}>
+          {children}
+        </MonitorAlertContext.Provider>
+      </PacketContext.Provider>
+    </AlertContext.Provider>
+  )

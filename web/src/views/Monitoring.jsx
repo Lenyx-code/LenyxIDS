@@ -2,11 +2,12 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import {
   Monitor, Cpu, MemoryStick, HardDrive, Network,
   Activity, AlertTriangle, ChevronRight, ChevronLeft,
-  RefreshCw, X, FileText, Skull, ExternalLink
+  RefreshCw, X, FileText, Skull, ExternalLink, ShieldAlert
 } from "lucide-react"
 import { API } from "../services/api"
 import { MonitoringAlerts } from "./MonitoringAlerts"
-import { FileAlertsTab } from "./FileAlertStab"
+import { FileChangesTab } from "./FileAlertStab"
+import { useSSEStore } from "../store/sseStore"
 
 const HISTORY_MAX = 60
 const REFRESH_MS  = 5000
@@ -336,8 +337,9 @@ function HostDetail({ host, history, cfg, onClose }) {
           </div>
         )}
 
+        
         {tab === "files" && (
-          <FileAlertsTab hostname={host.hostname ?? host._id} />
+          <FileChangesTab hostname={host.hostname} />
         )}
       </div>
     </div>
@@ -398,8 +400,6 @@ function ProcRow({ proc, suspect = false }) {
 // ── Monitoring (composant principal) ─────────────────────────────────────────
 
 export function Monitoring() {
-  const [hosts,      setHosts]      = useState([])
-  const [historyMap, setHistoryMap] = useState({})
   const [selected,   setSelected]   = useState(null)
   const [loading,    setLoading]    = useState(true)
   const [cfgMap,     setCfgMap]     = useState({})
@@ -408,42 +408,32 @@ export function Monitoring() {
     ram:  { warn: 75, critical: 90 },
     disk: { warn: 80, critical: 95 },
   })
-  const [alertsHost, setAlertsHost] = useState(null)   // ← vue alertes dédiée
-  const [lastUpdate, setLastUpdate] = useState(null)
   const timerRef = useRef(null)
+
+  const hosts       = useSSEStore((state) => state.hosts)
+  const historyMap  = useSSEStore((state) => state.historyMap)
+  const lastUpdate  = useSSEStore((state) => state.lastUpdate)
+  const setHosts    = useSSEStore((state) => state.setHosts)
+
+  // alertsHost : nom d'une machine précise, ou "__ALL__" pour la vue globale
+  const [alertsHost, setAlertsHost] = useState(null)
 
   const getCfg = (hostname) => cfgMap[hostname] ?? globalCfg
 
+  // Fetch REST : sert de filet de sécurité / chargement initial.
+  // Le temps réel (SSE) est déjà branché globalement via Layout → initRealtime().
   const fetchHosts = useCallback(async () => {
     try {
       const r    = await API.getMonitoringHosts()
       const list = r.data?.hosts ?? []
       setHosts(list)
-      setLastUpdate(new Date())
-      setHistoryMap(prev => {
-        const next = { ...prev }
-        list.forEach(h => {
-          const key = h.hostname ?? h._id
-          if (!next[key]) next[key] = { cpu: [], ram: [], disk: [] }
-          const push = (arr, val) => {
-            const a = [...arr, val ?? 0]
-            return a.length > HISTORY_MAX ? a.slice(-HISTORY_MAX) : a
-          }
-          next[key] = {
-            cpu:  push(next[key].cpu,  h.cpu_pct),
-            ram:  push(next[key].ram,  h.ram_pct),
-            disk: push(next[key].disk, h.disk_pct),
-          }
-        })
-        return next
-      })
       setSelected(prev => {
         if (!prev) return null
         return list.find(h => (h.hostname ?? h._id) === (prev.hostname ?? prev._id)) ?? prev
       })
     } catch {}
     finally { setLoading(false) }
-  }, [])
+  }, [setHosts])
 
   useEffect(() => {
     fetchHosts()
@@ -451,31 +441,8 @@ export function Monitoring() {
     return () => clearInterval(timerRef.current)
   }, [fetchHosts])
 
-  useEffect(() => {
-    let es
-    try {
-      es = new EventSource("http://localhost:8000/api/monitoring/stream")
-      es.onmessage = (e) => {
-        try {
-          const data = JSON.parse(e.data)
-          const key  = data.hostname
-          if (!key) return
-          setHosts(prev => {
-            const idx = prev.findIndex(h => (h.hostname ?? h._id) === key)
-            if (idx === -1) return [...prev, data]
-            const next = [...prev]; next[idx] = data; return next
-          })
-          setHistoryMap(prev => {
-            const h    = prev[key] ?? { cpu: [], ram: [], disk: [] }
-            const push = (arr, val) => { const a = [...arr, val ?? 0]; return a.length > HISTORY_MAX ? a.slice(-HISTORY_MAX) : a }
-            return { ...prev, [key]: { cpu: push(h.cpu, data.cpu_pct), ram: push(h.ram, data.ram_pct), disk: push(h.disk, data.disk_pct) } }
-          })
-          setLastUpdate(new Date())
-        } catch {}
-      }
-    } catch {}
-    return () => es?.close()
-  }, [])
+  // ⚠️ Plus de useEffect avec `new EventSource(...)` ici : supprimé.
+  // Cette connexion est désormais gérée une seule fois dans Layout via initRealtime().
 
   const onlineHosts   = hosts.length
   const criticalCount = hosts.filter(h => {
@@ -483,23 +450,29 @@ export function Monitoring() {
     return h.cpu_pct >= c.cpu.critical || h.ram_pct >= c.ram.critical
   }).length
 
-  // ── Vue alertes d'une machine spécifique ─────────────────────────────────
-  if (alertsHost) return (
-    <div className="flex flex-col h-full overflow-hidden gap-3">
-      <div className="flex items-center gap-3 shrink-0">
-        <button onClick={() => setAlertsHost(null)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700
-            text-xs font-mono text-slate-400 hover:text-slate-200 hover:border-slate-600 transition-all">
-          <ChevronLeft className="w-3.5 h-3.5" />
-          Retour monitoring
-        </button>
-        <span className="text-xs font-mono text-slate-500">
-          Alertes de <span className="text-cyan-400 font-semibold">{alertsHost}</span>
-        </span>
+  // ── Vue alertes (globale ou par machine) ──────────────────────────────────
+  if (alertsHost) {
+    const isGlobal = alertsHost === "__ALL__"
+    return (
+      <div className="flex flex-col h-full overflow-hidden gap-3">
+        <div className="flex items-center gap-3 shrink-0">
+          <button onClick={() => setAlertsHost(null)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700
+              text-xs font-mono text-slate-400 hover:text-slate-200 hover:border-slate-600 transition-all">
+            <ChevronLeft className="w-3.5 h-3.5" />
+            Retour monitoring
+          </button>
+          <span className="text-xs font-mono text-slate-500">
+            {isGlobal
+              ? <span className="text-cyan-400 font-semibold">Toutes les machines</span>
+              : <>Alertes de <span className="text-cyan-400 font-semibold">{alertsHost}</span></>
+            }
+          </span>
+        </div>
+        <MonitoringAlerts defaultHostname={isGlobal ? undefined : alertsHost} />
       </div>
-      <MonitoringAlerts defaultHostname={alertsHost} />
-    </div>
-  )
+    )
+  }
 
   // ── Vue principale ────────────────────────────────────────────────────────
   return (
@@ -524,6 +497,15 @@ export function Monitoring() {
             {lastUpdate && (
               <span className="text-[10px] font-mono text-slate-600">{fmt(lastUpdate)}</span>
             )}
+            <button
+              onClick={() => setAlertsHost("__ALL__")}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700
+                text-xs font-mono text-slate-400 hover:text-red-400 hover:border-red-500/30 transition-all"
+              title="Voir toutes les alertes de monitoring"
+            >
+              <ShieldAlert className="w-3.5 h-3.5" />
+              Toutes les alertes
+            </button>
             <button onClick={fetchHosts}
               className="p-1.5 rounded-lg hover:bg-slate-700/50 text-slate-500 hover:text-slate-300 transition-colors">
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />

@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { Network, ArrowRightLeft, Filter, Trash2, Activity } from "lucide-react"
+import { useState, useMemo, memo } from "react"
+import { Network, ArrowRightLeft, Filter, Trash2, Activity, Pause, Play } from "lucide-react"
 import { LiveIndicator }  from "../components/ui/LiveIndicator"
-import { usePacketStore}    from "../store/sseStore"
+import { useSSEStore}    from "../store/sseStore"
 import { formatTime }     from "../utils/formatters"
 
 const PROTOCOL_COLORS = {
@@ -29,13 +29,13 @@ function hasPorts(packets) {
 }
 
 export function Dashboard() {
-  // Store global SSE 
-  const {
-    packets, pktConn,
-    setPaused, clearPackets,
-  } = usePacketStore()
+  // Store global SSE
+  const packets      = useSSEStore((state) => state.packets)
+  const pktConn      = useSSEStore((state) => state.pktConn)
+  const setPaused    = useSSEStore((state) => state.setPaused)
+  const clearPackets = useSSEStore((state) => state.clearPackets)
 
-  //State local 
+  // State local
   const [paused,      setPausedLocal] = useState(false)
   const [filter,      setFilter]      = useState("")
   const [protoFilter, setProtoFilter] = useState("ALL")
@@ -46,17 +46,24 @@ export function Dashboard() {
     setPaused(next)
   }
 
-  const filtered = packets.filter(p =>
-    (protoFilter === "ALL" || p.protocol === protoFilter) &&
-    matchesFilter(p, filter)
+  // Recalculs coûteux mémoïsés : ne se refont que si packets/filtre changent réellement
+  const filtered = useMemo(
+    () => packets.filter(p =>
+      (protoFilter === "ALL" || p.protocol === protoFilter) &&
+      matchesFilter(p, filter)
+    ),
+    [packets, protoFilter, filter]
   )
 
-  const stats = packets.reduce((acc, p) => {
-    acc[p.protocol] = (acc[p.protocol] || 0) + 1
-    return acc
-  }, {})
+  const stats = useMemo(
+    () => packets.reduce((acc, p) => {
+      acc[p.protocol] = (acc[p.protocol] || 0) + 1
+      return acc
+    }, {}),
+    [packets]
+  )
 
-  const showPorts   = hasPorts(filtered)
+  const showPorts   = useMemo(() => hasPorts(filtered), [filtered])
   const colTemplate = showPorts ? COL_FULL : COL_NO_PORT
 
   return (
@@ -122,7 +129,15 @@ export function Dashboard() {
         </div>
 
         <button
-          onClick={clearPackets}  
+          onClick={handlePause}
+          className="p-1.5 rounded-lg text-slate-500 border border-cyber-border hover:text-cyber-accent hover:border-cyber-accent/30 transition-all"
+          title={paused ? "Reprendre le flux" : "Mettre en pause"}
+        >
+          {paused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
+        </button>
+
+        <button
+          onClick={clearPackets}
           className="p-1.5 rounded-lg text-slate-500 border border-cyber-border hover:text-red-400 hover:border-red-500/30 transition-all"
           title="Vider le buffer"
         >
@@ -169,7 +184,7 @@ export function Dashboard() {
           ) : (
             filtered.map((pkt, i) => (
               <PacketRow
-                key={pkt._id ?? i}
+                key={pkt._cid ?? pkt._id ?? i}
                 packet={pkt}
                 index={i}
                 showPorts={showPorts}
@@ -188,7 +203,10 @@ export function Dashboard() {
   )
 }
 
-function PacketRow({ packet, index, showPorts, colTemplate }) {
+// Mémoïsé : évite de re-rendre les 200 lignes quand seule une partie change.
+// Utile même avec le batching, car les paquets en fin de liste ne changent pas
+// de contenu d'un flush à l'autre (seule leur position peut varier).
+const PacketRow = memo(function PacketRow({ packet, index, showPorts, colTemplate }) {
   const colors   = PROTOCOL_COLORS[packet.protocol]
   const badgeCls = colors?.badge ?? "bg-slate-700 text-slate-400 border-slate-600"
   const rowBg    = index % 2 !== 0 ? "bg-cyber-surface/30" : ""
@@ -228,4 +246,4 @@ function PacketRow({ packet, index, showPorts, colTemplate }) {
       </div>
     </div>
   )
-}
+})

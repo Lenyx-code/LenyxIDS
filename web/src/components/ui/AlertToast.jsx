@@ -4,9 +4,10 @@
 import { useEffect, useRef, useState } from "react"
 import { ShieldAlert, X } from "lucide-react"
 import { Badge } from "./Badge"
+// dans ui/AlertToast.jsx, remplace la définition locale par :
+import { createToastId } from "../../utils/toastUtils"
 
 let _counter = 0
-export const createToastId = () => `toast_${Date.now()}_${++_counter}`
 
 function formatDate(ts) {
   if (!ts) return "—"

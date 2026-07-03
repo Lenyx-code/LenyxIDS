@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { API } from "../services/api"
-import { useAlertStore } from "../store/sseStore"
+import { useSSEStore } from "../store/sseStore"
 import { Badge } from "../components/ui/Badge"
 import { LiveIndicator } from "../components/ui/LiveIndicator"
 import {
@@ -124,7 +124,17 @@ function AlertDetailModal({ alert, onClose }) {
 }
 
 export function Alerts() {
-  const { alertConn, toasts } = useAlertStore()
+  const alertConn = useSSEStore(
+  (state) => state.alertConn
+)
+
+const toasts = useSSEStore(
+  (state) => state.toasts
+)
+
+const closeToast = useSSEStore(
+  (state) => state.closeToast
+)
 
   const [alerts,      setAlerts]      = useState([])
   const [loading,     setLoading]     = useState(false)

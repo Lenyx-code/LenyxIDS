@@ -1,173 +1,158 @@
-// Composant onglet Fichiers pour HostDetail dans Monitoring.jsx
-// À remplacer dans le tab === "files" de HostDetail
-
-import { useEffect, useState, useCallback } from "react"
-import { FileText, RefreshCw, ShieldAlert, CheckCircle, XCircle } from "lucide-react"
+// Ajouter l'import en haut
+import { useState, useEffect, useRef, useCallback } from "react"
+import {
+  Monitor, Cpu, MemoryStick, HardDrive, Network,
+  Activity, AlertTriangle, ChevronRight, ChevronLeft,
+  RefreshCw, X, FileText, Skull, ExternalLink, Filter
+} from "lucide-react"
 import { API } from "../services/api"
+import { MonitoringAlerts } from "./MonitoringAlerts"
 
-const CHANGE_CFG = {
-  MODIFIED:  { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/30", dot: "bg-yellow-500" },
-  DELETED:   { color: "text-red-400",    bg: "bg-red-500/10",    border: "border-red-500/30",    dot: "bg-red-500"    },
-  TRUNCATED: { color: "text-orange-400", bg: "bg-orange-500/10", border: "border-orange-500/30", dot: "bg-orange-500" },
-  CREATED:   { color: "text-emerald-400",bg: "bg-emerald-500/10",border: "border-emerald-500/30",dot: "bg-emerald-500"},
-}
+// ── FileChangesTab — définir ICI dans Monitoring.jsx ─────────────
+export function FileChangesTab({ hostname }) {
+  const [changes,    setChanges]    = useState([])
+  const [loading,    setLoading]    = useState(false)
+  const [filter,     setFilter]     = useState("")
+  const [changeType, setChangeType] = useState("")
+  const [page,       setPage]       = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [total,      setTotal]      = useState(0)
 
-const fmtSize = (bytes) => {
-  if (bytes == null) return "—"
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-  return `${(bytes / 1024 / 1024).toFixed(1)} MB`
-}
-
-const fmt = (iso) => {
-  if (!iso) return "—"
-  return new Date(iso).toLocaleString("fr-FR", {
-    day: "2-digit", month: "2-digit",
-    hour: "2-digit", minute: "2-digit", second: "2-digit",
-  })
-}
-
-export function FileAlertsTab({ hostname }) {
-  const [alerts,   setAlerts]   = useState([])
-  const [loading,  setLoading]  = useState(true)
-  const [total,    setTotal]    = useState(0)
-
-  const fetchFileAlerts = useCallback(async () => {
+  const fetchChanges = useCallback(async () => {
     setLoading(true)
     try {
-      const r = await API.getMonitoringAlerts({
-        anomaly_type: "FILE_CHANGE",
-        hostname,
-        limit: 50,
-        page: 1,
+      const res = await API.getFileChanges(hostname, {
+        page, limit: 50,
+        ...(changeType && { change_type: changeType }),
       })
-      setAlerts(r.data.data ?? [])
-      setTotal(r.data.total ?? 0)
-    } catch {
-      setAlerts([])
+      setChanges(res.data.data || [])
+      setTotal(res.data.total || 0)
+      setTotalPages(res.data.total_pages || 1)
+    } catch (e) {
+      console.error(e)
     } finally {
       setLoading(false)
     }
-  }, [hostname])
+  }, [hostname, page, changeType])
 
-  useEffect(() => { fetchFileAlerts() }, [fetchFileAlerts])
+  useEffect(() => { fetchChanges() }, [fetchChanges])
+  useEffect(() => { setPage(1) }, [changeType])
 
-  const handleStatus = async (id, status) => {
-    try {
-      await API.updateMonitoringAlertStatus(id, status)
-      fetchFileAlerts()
-    } catch {}
+  const CHANGE_COLORS = {
+    created:  "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    modified: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
+    deleted:  "text-red-400 bg-red-500/10 border-red-500/20",
+    MODIFIED: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
+    DELETED:  "text-red-400 bg-red-500/10 border-red-500/20",
+    TRUNCATED:"text-orange-400 bg-orange-500/10 border-orange-500/20",
   }
 
-  if (loading) return (
-    <div className="flex items-center justify-center py-12">
-      <RefreshCw className="w-4 h-4 text-slate-500 animate-spin" />
-    </div>
-  )
-
-  if (alerts.length === 0) return (
-    <div className="flex flex-col items-center justify-center gap-3 py-12 text-slate-600">
-      <FileText className="w-8 h-8 opacity-30" />
-      <p className="text-xs font-mono">Aucune modification de fichier détectée</p>
-      <p className="text-[11px] text-slate-700">
-        Le FileWatchdog surveille : /etc/passwd, /etc/shadow, /etc/hosts…
-      </p>
-      <button onClick={fetchFileAlerts}
-        className="mt-2 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700
-          text-[11px] font-mono text-slate-400 hover:text-slate-200 transition-all">
-        <RefreshCw className="w-3 h-3" /> Actualiser
-      </button>
-    </div>
+  const filtered = changes.filter(c =>
+    !filter || c.file_path?.toLowerCase().includes(filter.toLowerCase())
   )
 
   return (
     <div className="flex flex-col gap-3">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <ShieldAlert className="w-3.5 h-3.5 text-cyan-400" />
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-            Fichiers modifiés
-          </span>
-          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/10
-            border border-cyan-500/30 text-cyan-400">
-            {total}
-          </span>
+
+      {/* Toolbar */}
+      <div className="flex items-center gap-2">
+        <div className="flex-1 relative">
+          <Filter className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500" />
+          <input
+            type="text"
+            placeholder="Filtrer par chemin..."
+            value={filter}
+            onChange={e => setFilter(e.target.value)}
+            className="w-full bg-slate-800/40 border border-slate-700/40 rounded-lg pl-8 pr-3 py-1.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-slate-500"
+          />
         </div>
-        <button onClick={fetchFileAlerts}
-          className="p-1.5 rounded-lg hover:bg-slate-700/50 text-slate-500 hover:text-slate-300 transition-colors">
-          <RefreshCw className="w-3 h-3" />
+        {["", "MODIFIED", "DELETED"].map(type => (
+          <button key={type}
+            onClick={() => setChangeType(type)}
+            className={`px-2.5 py-1.5 rounded-lg text-[10px] font-mono border transition-all ${
+              changeType === type
+                ? "bg-slate-700 text-slate-200 border-slate-600"
+                : "text-slate-500 border-slate-700/40 hover:text-slate-300"
+            }`}>
+            {type === "" ? "Tous" : type}
+          </button>
+        ))}
+        <button onClick={fetchChanges}
+          className="p-1.5 rounded-lg border border-slate-700/40 text-slate-500 hover:text-slate-300 transition-all">
+          <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
         </button>
       </div>
 
-      {/* Liste */}
-      <div className="flex flex-col gap-2">
-        {alerts.map((alert) => {
-          const cfg = CHANGE_CFG[alert.change_type] ?? CHANGE_CFG.MODIFIED
-          const filename = alert.file_path?.split("/").pop() ?? "—"
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-2">
+        {["MODIFIED", "DELETED", "TRUNCATED"].map(type => {
+          const count = changes.filter(c => c.change_type === type).length
           return (
-            <div key={alert._id}
-              className={`p-3 rounded-lg border ${cfg.bg} ${cfg.border} flex flex-col gap-1.5`}>
-
-              {/* Ligne 1 : type + nom fichier */}
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded-full border
-                    flex items-center gap-1 ${cfg.bg} ${cfg.border} ${cfg.color}`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
-                    {alert.change_type}
-                  </span>
-                  <span className="text-[11px] font-mono font-semibold text-slate-200 truncate">
-                    {filename}
-                  </span>
-                </div>
-                <span className="text-[9px] font-mono text-slate-600 shrink-0">
-                  {fmt(alert.detection_time)}
-                </span>
-              </div>
-
-              {/* Ligne 2 : chemin complet */}
-              <p className="text-[10px] font-mono text-slate-500 truncate" title={alert.file_path}>
-                {alert.file_path}
-              </p>
-
-              {/* Ligne 3 : tailles */}
-              {alert.old_size != null && (
-                <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-600">
-                  <span>{fmtSize(alert.old_size)}</span>
-                  <span className="text-slate-700">→</span>
-                  <span className={alert.new_size === 0 ? "text-red-400" : "text-slate-400"}>
-                    {fmtSize(alert.new_size)}
-                  </span>
-                </div>
-              )}
-
-              {/* Actions statut */}
-              {alert.status !== "closed" && (
-                <div className="flex gap-1.5 mt-0.5">
-                  {alert.status === "open" && (
-                    <button onClick={() => handleStatus(alert._id, "reviewed")}
-                      className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono
-                        bg-emerald-600/10 border border-emerald-600/20 text-emerald-400
-                        hover:bg-emerald-600/20 transition-colors">
-                      <CheckCircle className="w-3 h-3" /> Analysé
-                    </button>
-                  )}
-                  <button onClick={() => handleStatus(alert._id, "closed")}
-                    className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono
-                      bg-slate-700/40 border border-slate-600/30 text-slate-400
-                      hover:text-red-400 transition-colors">
-                    <XCircle className="w-3 h-3" /> Fermer
-                  </button>
-                </div>
-              )}
-              {alert.status === "closed" && (
-                <span className="text-[10px] font-mono text-slate-600">✓ Fermée</span>
-              )}
+            <div key={type} className={`rounded-lg p-2.5 border text-center ${CHANGE_COLORS[type]}`}>
+              <p className="text-lg font-mono font-bold">{count}</p>
+              <p className="text-[9px] uppercase tracking-wider">{type}</p>
             </div>
           )
         })}
       </div>
+
+      {/* Liste */}
+      <div className="rounded-xl border border-slate-700/40 overflow-hidden">
+        <div className="grid grid-cols-12 gap-2 px-3 py-2 bg-slate-800/60 text-[9px] font-mono text-slate-500 uppercase tracking-widest border-b border-slate-700/40">
+          <div className="col-span-1">Type</div>
+          <div className="col-span-8">Chemin</div>
+          <div className="col-span-3">Horodatage</div>
+        </div>
+        <div className="overflow-y-auto max-h-64">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <RefreshCw className="w-4 h-4 text-slate-500 animate-spin" />
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-10 text-slate-600">
+              <FileText className="w-5 h-5 mb-2 opacity-30" />
+              <p className="text-xs font-mono">Aucune modification détectée</p>
+            </div>
+          ) : (
+            filtered.map((change, i) => (
+              <div key={change._id || i}
+                className={`grid grid-cols-12 gap-2 px-3 py-2 border-b border-slate-700/20 text-[11px] font-mono hover:bg-slate-800/30 ${i % 2 !== 0 ? "bg-slate-800/10" : ""}`}>
+                <div className="col-span-1 flex items-center">
+                  <span className={`px-1.5 py-0.5 rounded text-[9px] border font-bold ${CHANGE_COLORS[change.change_type] || "text-slate-400 bg-slate-700 border-slate-600"}`}>
+                    {(change.change_type || "?")[0]}
+                  </span>
+                </div>
+                <div className="col-span-8 text-slate-300 truncate flex items-center" title={change.file_path}>
+                  {change.file_path}
+                </div>
+                <div className="col-span-3 text-slate-500 flex items-center tabular-nums">
+                  {change.timestamp
+                    ? new Date(change.timestamp).toLocaleString("fr-FR")
+                    : "—"
+                  }
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between text-[10px] font-mono text-slate-600">
+          <span>{total} fichiers au total</span>
+          <div className="flex gap-1.5">
+            <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}
+              className="p-1 rounded border border-slate-700/40 disabled:opacity-30">
+              <ChevronLeft className="w-3 h-3" />
+            </button>
+            <span className="px-2 py-0.5">{page}/{totalPages}</span>
+            <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}
+              className="p-1 rounded border border-slate-700/40 disabled:opacity-30">
+              <ChevronRight className="w-3 h-3" />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
