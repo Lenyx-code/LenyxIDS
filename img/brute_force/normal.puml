@@ -1,0 +1,18 @@
+@startuml
+title "Communication normale : Connexion SSH"
+skinparam style strictuml
+
+actor "Client légitime" as Client
+participant "Serveur SSH" as Serveur
+
+Client -> Serveur: SYN (port 22)
+Serveur -> Client: SYN-ACK : Peut se connecter (port ouvert)
+Client -> Serveur: ACK
+Serveur -> Client : SSH Banner ("SSH-2.0-OpenSSH_8.0")
+Client -> Serveur: Echange de clés
+Serveur -> Client: Echange de clés 
+Client -> Serveur: user:admin password:********
+Serveur -> Client: Authification ok
+Note over Client, Serveur: Session SSH établie
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+title "Communication normale : ARP"
+skinparam style strictuml
+
+actor "Machine (19.168.100.1)" as Machine
+participant "Réseau local" as Network
+participant "Routeur" as Router
+
+Machine -> Network : ARP Request
+Network -> Router : "Qui est 192.168.100.1 ? MAC ?"
+Router -> Machine : ARP Reply 
+Note over Router, Machine : "192.168.100.1 → AA:BB:CC:DD:EE:FF" 
+Note over Machine, Network : "Cache ARP mise à jour : 192.168.1.1 = AA:BB:CC:DD:EE:FF" 
+Machine -> Router : Données
+
+@enduml
+

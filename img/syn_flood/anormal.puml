@@ -1,0 +1,26 @@
+@startuml
+title "Communication anormale : Déni de service par SYN Flood"
+skinparam style strictuml
+
+actor "Attaquant" as Attacker
+participant "Serveur PME\n(Victime)" as Victime
+control "Lenyx IDS\n(Analyser)" as IDS
+
+== Phase d'inondation (SYN Flood) ==
+loop Des centaines de fois par seconde
+    Attacker -> Victime: SYN (Demande de connexion)
+    Activate Victime
+    Note over Victime: Allocation d'un slot mémoire\n(Connexion semi-ouverte)
+    IDS -> IDS: Incrémentation dans 'syn_flood_history'
+    
+    Victime -->> Attacker: SYN-ACK (En attente de réponse)
+    Deactivate Victime
+    Note over Attacker: L'attaquant ignore volontairement\nle SYN-ACK et n'envoie jamais d'ACK
+end
+
+== Conséquences et Détection ==
+Note over Victime: File d'attente TCP pleine (SYN Backlog)\n--> Serveur saturé / Inaccessible
+
+Note over IDS: Seuil franchi :\n> 100 paquets SYN en < 5s
+IDS -> IDS: Levée de l'alerte 'AlertSynFlood'\n& Écriture dans 'evidence-syn-flood.txt'
+@enduml

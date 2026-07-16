@@ -513,7 +513,7 @@ class MongoBackend:
             print(f"[!] Erreur de transmission de l'alerte à l'API : {e}")
             return {"ok": False, "error": str(e)}
 
-    # ── helpers ────────────────────────────────────────────────────
+    # helpers
 
     def _lite(self, metrics: dict) -> dict:
         """Version allégée des métriques pour le broadcast SSE."""

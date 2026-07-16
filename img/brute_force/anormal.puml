@@ -1,0 +1,23 @@
+@startuml
+title "Communication anormale : Force brute sur service sensible (ex: SSH, Port 22)"
+skinparam style strictuml
+
+actor "Attaquant" as Attacker
+participant "Serveur PME\n(Port 22)" as Serveur
+control "Lenyx IDS\n(Analyser)" as IDS
+
+== Phase de Force Brute ==
+loop Pour chaque tentative du dictionnaire (Plusieurs fois par seconde)
+    Attacker -> Serveur : SYN (Nouvelle demande de connexion)
+    IDS -> IDS : Clé générée 'bf:IP_SRC:22'\nIncrémentation dans 'brute_force_history'
+    Serveur -> Attacker : SYN-ACK (Le port répond)
+    
+    Note over Attacker, Serveur : L'attaquant tente une authentification SSH\nqui échoue (Connexion refusée/fermée)
+    Attacker -> Serveur : FIN ou RST
+end
+
+== Détection par l'IDS ==
+Note over IDS : Condition validée :\ncount > 8 et duration <= 10s
+IDS -> IDS : Levée de l'alerte 'AlertBruteForce'\n& Réinitialisation de l'historique ('count': 0)
+IDS -> Serveur : Notification de l'incident (MongoDB + SSE)
+@enduml

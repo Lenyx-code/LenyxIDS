@@ -12,6 +12,14 @@ import {
 const ATTACK_TYPES = ["ALL", "PORT_SCAN", "BRUTE_FORCE", "SYN_FLOOD", "OS_FINGERPRINTING", "ARP_SPOOFING"]
 const SEVERITIES   = ["ALL", "CRITICAL", "HIGH", "MEDIUM", "LOW"]
 
+const fmt = (iso) => {
+  if (!iso) return "—"
+  return new Date(iso).toLocaleString("fr-FR", {
+    day: "2-digit", month: "2-digit", year: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+  })
+}
+
 const GROUP_OPTIONS = [
   { value: "",            label: "Aucun"        },
   { value: "ip_src",      label: "IP source"    },
@@ -70,7 +78,7 @@ function AlertDetailModal({ alert, onClose }) {
                 {(alert.attack_type ?? "—").replace(/_/g, " ")}
               </h2>
               <p className="text-xs font-mono text-slate-400 mt-0.5">
-                {new Date(alert.detection_time).toLocaleString("fr-FR")}
+                {fmt(alert.detection_time)}
               </p>
             </div>
           </div>
@@ -408,7 +416,7 @@ function AlertRow({ alert, index, onStatusChange, onView, indent = false }) {
   return (
     <div className={`grid grid-cols-12 gap-2 ${px} py-2.5 border-b border-slate-100 dark:border-slate-800 text-xs font-mono hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-all cursor-default ${rowBg}`}>
       <div className="col-span-2 text-slate-400 flex items-center tabular-nums">
-        {new Date(alert.detection_time).toLocaleString("fr-FR")}
+        {fmt(alert.detection_time)}
       </div>
       <div className="col-span-2 text-slate-700 dark:text-slate-300 font-semibold truncate flex items-center">
         {(alert.attack_type ?? "—").replace(/_/g, " ")}

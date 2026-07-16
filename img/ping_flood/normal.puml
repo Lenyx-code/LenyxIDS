@@ -1,0 +1,11 @@
+@startuml
+title "Communication normale : Échange d'écho ICMP (Ping)"
+skinparam style strictuml
+
+actor "Administrateur" as Admin
+participant "Serveur PME" as Serveur
+
+Admin -> Serveur : ICMP Echo Request (Type 8, Code 0)
+Serveur -> Admin : ICMP Echo Reply (Type 0, Code 0)
+Note over Admin, Serveur : Latence normale, diagnostic réseau OK
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+title "Communication anormale : Déni de service par Ping Flood"
+skinparam style strictuml
+
+actor "Attaquant" as Attacker
+participant "Serveur PME\n(Victime)" as Serveur
+control "Lenyx IDS\n(Analyser)" as IDS
+
+== Attaque par inondation ==
+loop Des milliers de fois par seconde
+    Attacker -> Serveur : ICMP Echo Request (Type 8, Code 0)
+    IDS -> IDS : Incrémentation dans 'ping_flood_history'
+    Serveur -> Attacker : ICMP Echo Reply (Traitement CPU obligatoire)
+end
+
+== Détection IDS ==
+Note over IDS : Seuil franchi :\n> 100 paquets ICMP en < 5s
+IDS -> IDS : Génération 'evidence-ping-flood.txt'\n& Levée de l'alerte 'AlertPingFlood'
+Note over Serveur : CPU saturé / Lien réseau congestionné
+@enduml

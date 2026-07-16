@@ -1,0 +1,22 @@
+@startuml
+title "Communication anormale : Reconnaissance d'OS (OS Fingerprinting)"
+skinparam style strictuml
+
+actor "Attaquant\n(Scanner)" as Attacker
+participant "Serveur PME" as Serveur
+control "Lenyx IDS\n(Analyser)" as IDS
+
+== Phase de Fingerprinting ==
+Attacker -> Serveur : Paquet TCP sans aucun drapeau (NULL Scan)
+IDS -> IDS : Identification signature "" dans 'ABNORMAL_FLAGS'\nEnregistrement 'os_fp_history'
+
+Attacker -> Serveur : Paquet TCP avec drapeaux FIN+PSH+URG (XMAS Scan)
+IDS -> IDS : Identification signature "FPU"\nIncrémentation 'os_fp_history'
+
+Attacker -> Serveur : Paquet TCP avec drapeaux FIN (FIN Scan)
+IDS -> IDS : Identification signature "F"\nIncrémentation 'os_fp_history'
+
+== Analyse et Détection ==
+Note over IDS : Condition validée :\ncount >= 3 paquets anormaux en < 10s
+IDS -> IDS : Extraction des types uniques (NULL, XMAS, FIN)\n& Levée de 'AlertOsFingerprinting'
+@enduml

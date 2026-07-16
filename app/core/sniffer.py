@@ -83,8 +83,6 @@ class Sniffer:
                 self.analyser.detect_port_scan(ip_src, port_dst, ip_dst, tcp_flags, iface)
                 self.analyser.detect_syn_flood(ip_src, port_dst, ip_dst, tcp_flags, iface)
                 self.analyser.detect_os_fingerprinting(ip_src, port_dst, ip_dst, tcp_flags, iface)
-
-                # Brute force non-HTTP (SSH, FTP, RDP...) via SYN uniquement
                 self.analyser.detect_brute_force(ip_src, port_dst, ip_dst, tcp_flags, iface)
 
                 # Détection HTTP sur payload brut TCP
@@ -93,17 +91,9 @@ class Sniffer:
                     http_path = _parse_http_path(http_raw)
                     print(f'[HTTP]{now} {ip_src} -> {ip_dst}:{port_dst} | {http_path}')
 
-                    # HTTP Flood : compte les vraies requêtes HTTP applicatives
-                    self.analyser.detect_http_flood(ip_src, port_dst, ip_dst, iface)
-
-                    # Brute force HTTP Basic Auth (header Authorization présent)
-                    self.analyser.detect_http_brute_force(
-                        ip_src, port_dst, ip_dst, iface, http_raw
-                    )
-
                     # SQLi / XSS sur le path + query string
-                    if http_path:
-                        self.analyser.detect_web_attack(ip_src, ip_dst, http_path, iface)
+                    #if http_path:
+                        #self.analyser.detect_web_attack(ip_src, ip_dst, http_path, iface)
 
             elif packet.haslayer(UDP):
                 port_dst = packet[UDP].dport

@@ -1,64 +1,22 @@
-from utils.datetime_utils import DatetimeUtils as dt
-from scapy.layers.http import HTTPRequest
-from database.mongodb.models.alert import *
-from database.mongodb.repository import Repository
-import time
-import os
-from api.utils.broadcast import broadcast
-
-try:
-    from libinjection import is_sql_injection, is_xss
-    LIBINJECTION_AVAILABLE = True
-except ImportError:
-    LIBINJECTION_AVAILABLE = False
-    print("[!] libinjection non installé — détection SQLi/XSS désactivée")
-
+# ─── Variables globales ───────────────────────────────────────
 port_scan_history   = {}
 brute_force_history = {}
 syn_flood_history   = {}
 os_fp_history       = {}
 arp_table           = {}
 ping_flood_history  = {}
-http_flood_history  = {}
-web_attack_history  = {}
 
-TRUSTED_IPS  = ["127.0.0.1", "172.20.0.2", "172.20.0.1", "172.19.0.1"]
-INTERNAL_IPS = ["127.0.0.1", "172.20.0.2", "172.20.0.1", "172.19.0.1"]
-
-SENSITIVE_PORTS = {
-    22:   "SSH",
-    21:   "FTP",
-    23:   "Telnet",
-    3306: "MySQL",
-    3389: "RDP",
-    5900: "VNC",
-}
-
-
-HTTP_PORTS = {80: "HTTP", 443: "HTTPS", 8080: "HTTP-Alt"}
+# Registre des attaques actives — empêche le spam d'alertes
+# { "ip": { "attack_type": {"since": timestamp, "duration": secondes} } }
 active_attacks = {}
+
+TRUSTED_IPS  = ["127.0.0.1"]
+INTERNAL_IPS = ["172.20.0.2", "172.20.0.5", "172.20.0.6", "127.0.0.1"]
 
 
 class Analyser:
 
-    def _broadcast(self, alert_model):
-        try:
-            data = alert_model.model_dump()
-            data["detection_time"] = str(data.get("detection_time", ""))
-            data["_id"]            = str(data.get("id", ""))
-            broadcast("alerts", data)
-        except Exception as e:
-            print(f"[!] Broadcast alert error: {e}")
-
-    @staticmethod
-    def _write_evidence(fileName, evidence):
-        path = f"storage/captures/{fileName}"
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, 'a') as f:
-            try:
-                f.write(evidence)
-            except Exception as e:
-                print(f"Erreur ecriture : {e}")
+    # ─── Gestion active_attacks ───────────────────────────────
 
     def _set_active_attack(self, ip_src: str, attack_type: str, duration: int = 30):
         if ip_src not in active_attacks:
@@ -79,7 +37,7 @@ class Analyser:
             return False
         return True
 
-    #  Port Scan 
+    # ─── Port Scan ────────────────────────────────────────────
 
     def detect_port_scan(self, ip_src, port_dst, ip_dst, flags, iface):
         global port_scan_history
@@ -124,11 +82,9 @@ class Analyser:
 
         return False
 
-    #  Brute Force 
+    # ─── Brute Force ──────────────────────────────────────────
 
-    #  Brute Force 
-
-    def detect_brute_force(self, ip_src, port_dst, ip_dst, flags, iface):
+    def detect_brute_force(self, ip_src, port_dst, ip_dst, flags):
         now       = time.time()
         flags_str = str(flags).strip()
 
@@ -139,6 +95,11 @@ class Analyser:
         if self._is_attack_active(ip_src, f"brute_force_{port_dst}"):
             return False
 
+        SENSITIVE_PORTS   = {
+            22: "SSH", 21: "FTP", 23: "Telnet",
+            80: "HTTP", 443: "HTTPS", 3306: "MySQL",
+            3389: "RDP", 5900: "VNC", 8080: "HTTP-Alt",
+        }
         BRUTE_FORCE_FLAGS = {"PA", "A"}
 
         if port_dst not in SENSITIVE_PORTS:
@@ -156,6 +117,7 @@ class Analyser:
             duration = now - brute_force_history[key]["first_seen"]
             count    = brute_force_history[key]["count"]
 
+            # Fenêtre expirée → reset propre
             if duration > 10 and count <= 8:
                 brute_force_history[key] = {"count": 1, "first_seen": now}
                 return False
@@ -168,7 +130,7 @@ class Analyser:
                     detection_time = dt.get_format_now(),
                     ip_src         = ip_src,
                     ip_dst         = ip_dst,
-                    iface          = iface,
+                    iface          = "eth0",
                     port_dst       = port_dst,
                     service        = service,
                     attempts       = count
@@ -176,15 +138,17 @@ class Analyser:
                 Repository.save_brute_force_alert(alert)
                 self._broadcast(alert)
 
+                # Cooldown 30s par IP+port — clé unique pour chaque service
                 self._set_active_attack(ip_src, f"brute_force_{port_dst}", duration=30)
+                # count=1 et non 0 pour compter le paquet courant
                 brute_force_history[key] = {"count": 1, "first_seen": now}
                 return True
 
         return False
 
-    #  SYN Flood 
+    # ─── SYN Flood ────────────────────────────────────────────
 
-    def detect_syn_flood(self, ip_src, port_dst, ip_dst, flags, iface):
+    def detect_syn_flood(self, ip_src, port_dst, ip_dst, flags):
         global syn_flood_history
         now = time.time()
 
@@ -196,6 +160,7 @@ class Analyser:
         if str(flags).strip() != "S":
             return False
 
+        # Cooldown — une seule alerte toutes les 30s par IP
         if self._is_attack_active(ip_src, "syn_flood"):
             return False
 
@@ -219,7 +184,7 @@ class Analyser:
                 detection_time = dt.get_format_now(),
                 ip_src         = ip_src,
                 ip_dst         = ip_dst,
-                iface          = iface,
+                iface          = "eth0",
                 port_dst       = port_dst,
                 syn_packets    = count,
                 duration       = round(duration, 3)
@@ -233,9 +198,9 @@ class Analyser:
 
         return False
 
-    #  OS Fingerprinting 
+    # ─── OS Fingerprinting ────────────────────────────────────
 
-    def detect_os_fingerprinting(self, ip_src, port_dst, ip_dst, flags, iface):
+    def detect_os_fingerprinting(self, ip_src, port_dst, ip_dst, flags):
         global os_fp_history
         now = time.time()
 
@@ -244,9 +209,11 @@ class Analyser:
         if flags is None:
             return False
 
+        # Cooldown — une seule alerte toutes les 20s par IP
         if self._is_attack_active(ip_src, "os_fingerprint"):
             return False
 
+        # "FA" retiré — c'est un flag normal dans les réponses TCP SSH/HTTP
         ABNORMAL_FLAGS = {
             "":    "NULL scan",
             "F":   "FIN scan",
@@ -256,8 +223,7 @@ class Analyser:
             "PU":  "PSH+URG",
         }
 
-        flags_str = str(flags).strip()
-        print(f"[DEBUG] flags reçus pour fingerprinting: '{flags_str}'")
+        flags_str    = str(flags).strip()
         matched_type = ABNORMAL_FLAGS.get(flags_str)
         if matched_type is None:
             return False
@@ -286,7 +252,7 @@ class Analyser:
                     detection_time = dt.get_format_now(),
                     ip_src         = ip_src,
                     ip_dst         = ip_dst,
-                    iface          = iface,
+                    iface          = "eth0",
                     port_dst       = port_dst,
                     packets_count  = count,
                     duration       = round(duration, 3),
@@ -301,9 +267,9 @@ class Analyser:
 
         return False
 
-    #  ARP Spoofing 
+    # ─── ARP Spoofing ─────────────────────────────────────────
 
-    def detect_arp_spoofing(self, ip_src, ip_dst, mac_src, iface):
+    def detect_arp_spoofing(self, ip_src, ip_dst, mac_src):
         global arp_table
         now = time.time()
 
@@ -312,6 +278,8 @@ class Analyser:
         if ip_src.startswith("224.") or ip_src in ("255.255.255.255", "0.0.0.0"):
             return False
 
+        # Cooldown — une seule alerte toutes les 60s par IP
+        # (arpspoof envoie en continu — sans cooldown = spam)
         if self._is_attack_active(ip_src, "arp_spoofing"):
             return False
 
@@ -331,7 +299,7 @@ class Analyser:
                 detection_time = dt.get_format_now(),
                 ip_src         = ip_src,
                 ip_dst         = ip_dst,
-                iface          = iface,
+                iface          = "eth0",
                 ip_spoofed     = ip_src,
                 mac_legitimate = known_mac,
                 mac_fraudulent = mac_src,
@@ -340,64 +308,16 @@ class Analyser:
             Repository.save_arp_spoofing_alert(alert)
             self._broadcast(alert)
 
+            # Cooldown 60s — arpspoof envoie des centaines de paquets
             self._set_active_attack(ip_src, "arp_spoofing", duration=60)
             arp_table[ip_src] = {"mac": mac_src, "first_seen": now}
             return True
 
         return False
 
-    #  Ping Flood 
+    # ─── Ping Flood ───────────────────────────────────────────
 
-    def detect_ping_flood(self, ip_src, ip_dst, code, icmp_type, iface):
-        now = time.time()
-
-        MAX_ICMP_COUNT = 100
-        MAX_DURATION   = 5
-
-        if ip_src in INTERNAL_IPS or ip_dst in INTERNAL_IPS:
-            return False
-        if icmp_type != 8 or code != 0:
-            return False
-
-        if self._is_attack_active(ip_src, "ping_flood"):
-            return False
-
-        if ip_src not in ping_flood_history:
-            ping_flood_history[ip_src] = {"count": 1, "first_seen": now}
-        else:
-            ping_flood_history[ip_src]["count"] += 1
-
-        duration = now - ping_flood_history[ip_src]["first_seen"]
-        count    = ping_flood_history[ip_src]["count"]
-
-        if duration > MAX_DURATION and count <= MAX_ICMP_COUNT:
-            ping_flood_history[ip_src] = {"count": 1, "first_seen": now}
-            return False
-
-        if count > MAX_ICMP_COUNT and duration <= MAX_DURATION:
-            print(f"\n[!!!] DETECTION IDS : Ping Flood par {ip_src}\n"
-                  f"[i] Preuve : {count} paquets ICMP en {duration:.2f}s")
-
-            alert = AlertPingFlood(
-                detection_time = dt.get_format_now(),
-                ip_src         = ip_src,
-                ip_dst         = ip_dst,
-                iface          = iface,
-                icmp_packets   = count,
-                duration       = round(duration, 3)
-            )
-            Repository.save_ping_flood_alert(alert)
-            self._broadcast(alert)
-
-            self._set_active_attack(ip_src, "ping_flood", duration=30)
-            ping_flood_history[ip_src] = {"count": 1, "first_seen": now}
-            return True
-
-        return False
-
-    #  Ping Flood 
-
-    def detect_ping_flood(self, ip_src, ip_dst, code, icmp_type, iface):
+    def detect_ping_flood(self, ip_src, ip_dst, code, icmp_type):
         now = time.time()
 
         MAX_ICMP_COUNT = 100
@@ -432,7 +352,7 @@ class Analyser:
                 detection_time = dt.get_format_now(),
                 ip_src         = ip_src,
                 ip_dst         = ip_dst,
-                iface          = iface,
+                iface          = "eth0",
                 icmp_packets   = count,
                 duration       = round(duration, 3)
             )

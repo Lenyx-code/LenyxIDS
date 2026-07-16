@@ -1,0 +1,18 @@
+@startuml
+title "Communication normale : TCP Legitime"
+skinparam style strictuml
+
+actor "Client légitime" as Client
+participant "Serveur PME" as Serveur
+
+Client -> Serveur: SYN (port 80)
+Serveur -> Client: SYN-ACK : Peut se connecter (port ouvert)
+Client -> Serveur: ACK
+Note over Client, Serveur: Communication etablie(échange de données)
+Client -> Serveur: HTTP Request
+Serveur -> Client: HTTP Response
+Client -> Serveur: FIN
+Serveur -> Client: FIN-ACK 
+Note over Client, Serveur: Communication terminée
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+title "Communication anormale : Balayage / Scan de ports"
+skinparam style strictuml
+
+actor "Attaquant" as attacker
+participant "Serveur PME" as Serveur
+control "Lenyx IDS\n(Analyser)" as IDS
+
+== Phase de Balayage (Multi-ports) ==
+attacker -> Serveur: SYN (Port 80)
+IDS -> IDS: Enregistrement port 80 dans 'port_scan_history'
+Serveur -> attacker: SYN-ACK (Port ouvert)
+
+attacker -> Serveur: SYN (Port 22)
+IDS -> IDS: Ajout port 22 dans 'port_scan_history'
+Serveur -> attacker: SYN-ACK (Port ouvert)
+
+attacker -> Serveur: SYN (Port 3306)
+IDS -> IDS: Ajout port 3306 dans 'port_scan_history'
+Serveur -> attacker: RST (Port fermé)
+
+attacker -> Serveur: SYN (Port 1000)
+IDS -> IDS: Ajout port 1000 dans 'port_scan_history'
+Serveur -> attacker: RST (Port fermé)
+
+Note over IDS: Seuil détecté :\n> 10 ports uniques en < 5s
+IDS -> IDS: Levée de l'alerte 'AlertPortScan'\n& Réinitialisation de l'historique de l'IP
+
+== Résultat pour l'Attaquant ==
+Note over attacker: L'attaquant sait désormais que\nles ports 80 et 22 sont OUVERTS\net que 3306 et 1000 sont FERMÉS.
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+title "Communication anormale : Empoisonnement de cache (ARP Spoofing)"
+skinparam style strictuml
+
+actor "Attaquant\n(MAC:  00:11:22:33:44:55)" as Attacker
+actor "Machine Victime\n(192.168.100.1)" as Machine
+control "Lenyx IDS\n(Analyser)" as IDS
+
+== Phase d'empoisonnement ==
+Attacker -> Machine : ARP Reply (Spontané)\n"Je suis 192.168.100.254, ma MAC est 00:11:22:33:44:55"
+IDS -> IDS : Analyse du paquet ARP\nExtrait : (192.168.100.254 , 00:11:22:33:44:55)
+
+Note over IDS : Vérification dans 'arp_table' :\nknown_mac (AA:BB:CC:DD:EE:FF) != mac_src
+
+== Détection et Alerte ==
+Note over IDS : Anomalie détectée ! L'adresse MAC a changé.
+IDS -> IDS : Levée de 'AlertArpSpoofing'\n& Écriture dans 'evidence-arp-spoofing.txt'
+
+Note over Machine : Cache ARP corrompu :\n192.168.100.254 -> 00:11:22:33:44:55\n(Trafic détourné vers l'attaquant)
+@enduml

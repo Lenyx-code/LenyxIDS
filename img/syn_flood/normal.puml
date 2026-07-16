@@ -1,0 +1,14 @@
+@startuml
+title "Communication normale : TCP Legitime"
+skinparam style strictuml
+
+actor "Client légitime" as Client
+participant "Serveur PME" as Serveur
+
+Client -> Serveur: SYN
+Serveur -> Client: SYN-ACK
+Client -> Serveur: ACK
+Note over Client, Serveur: File d'attente : 1 slot occupé temporairement
+Client <--> Serveur: Echange des données
+
+@enduml

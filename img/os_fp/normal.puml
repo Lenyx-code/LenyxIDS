@@ -1,0 +1,12 @@
+@startuml
+title "Communication normale : Établissement de session TCP classique"
+skinparam style strictuml
+
+actor "Client" as Client
+participant "Serveur PME" as Serveur
+
+Client -> Serveur : SYN
+Serveur -> Client : SYN-ACK
+Client -> Serveur : ACK
+Note over Client, Serveur : Session TCP ouverte normalement (Drapeaux standards)
+@enduml
